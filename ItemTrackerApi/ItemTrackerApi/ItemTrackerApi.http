@@ -1,0 +1,6 @@
+@ItemTrackerApi_HostAddress = http://localhost:5014
+
+GET {{ItemTrackerApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

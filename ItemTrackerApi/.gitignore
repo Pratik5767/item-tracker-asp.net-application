@@ -1,0 +1,44 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# ASP.NET Core sensitive files
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+
+# User Secrets (local)
+secrets/
+
+# Log files
+*.log
+logs/
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.cache
+*.class
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Node / NPM (if you have front-end in the project)
+node_modules/
+
+# Others
+*.DS_Store
+*.bak
+*.swp
