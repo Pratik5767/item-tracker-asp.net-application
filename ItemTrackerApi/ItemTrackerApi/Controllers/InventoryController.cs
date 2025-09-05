@@ -29,12 +29,11 @@ namespace ItemTrackerApi.Controllers
                 Connection = connection
             };
 
+            connection.Open();
             command.Parameters.AddWithValue("@ProductId", InventoryDto.ProductId);
             command.Parameters.AddWithValue("@ProductName", InventoryDto.ProductName);
             command.Parameters.AddWithValue("@StockAvailable", InventoryDto.StockAvailable);
             command.Parameters.AddWithValue("@ReorderStock", InventoryDto.ReorderStock);
-
-            connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
 
@@ -86,6 +85,28 @@ namespace ItemTrackerApi.Controllers
 
             connection.Open();
             command.Parameters.AddWithValue("@ProductId", ProductId);
+            command.ExecuteNonQuery();
+            connection.Close();
+            return Ok();
+        }
+
+        [HttpPut]
+        public ActionResult UpdateInventoryData(Inventory InventoryDto)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+
+            SqlCommand command = new SqlCommand
+            {
+                CommandText = "sp_UpdateInventoryData",
+                CommandType = CommandType.StoredProcedure,
+                Connection = connection
+            };
+
+            connection.Open();
+            command.Parameters.AddWithValue("@ProductId", InventoryDto.ProductId);
+            command.Parameters.AddWithValue("@ProductName", InventoryDto.ProductName);
+            command.Parameters.AddWithValue("@StockAvailable", InventoryDto.StockAvailable);
+            command.Parameters.AddWithValue("@ReorderStock", InventoryDto.ReorderStock);
             command.ExecuteNonQuery();
             connection.Close();
             return Ok();
