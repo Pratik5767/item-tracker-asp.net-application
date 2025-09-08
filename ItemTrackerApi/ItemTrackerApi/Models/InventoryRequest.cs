@@ -1,6 +1,6 @@
 ﻿namespace ItemTrackerApi.Models
 {
-    public class Inventory
+    public class InventoryRequest
     {
         #region Properties
 

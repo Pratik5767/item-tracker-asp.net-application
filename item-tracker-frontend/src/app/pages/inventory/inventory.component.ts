@@ -27,7 +27,7 @@ export class InventoryComponent {
     }
 
     inventoryDetails(): void {
-        this.httpClient.get(environment.apiUrl).subscribe(data => {
+        this.httpClient.get(`${environment.apiUrl}/Inventory`).subscribe(data => {
             this.inventoryDto = data;
         });
         this.inventoryData = {
@@ -42,7 +42,7 @@ export class InventoryComponent {
     onDelete(productId: any): void {
         const isDelete = confirm('Do you want to delete?');
         if (isDelete) {
-            this.httpClient.delete(`${environment.apiUrl}?ProductId=${productId}`).subscribe(data => {
+            this.httpClient.delete(`${environment.apiUrl}/Inventory?ProductId=${productId}`).subscribe(data => {
                 this.inventoryDetails();
             })
         }
@@ -66,7 +66,7 @@ export class InventoryComponent {
         }
 
         if (!this.isUpdate) {
-            this.httpClient.post(environment.apiUrl, this.inventoryData, httpOptions).subscribe(
+            this.httpClient.post(`${environment.apiUrl}/Inventory`, this.inventoryData, httpOptions).subscribe(
                 {
                     next: v => console.log(v),
                     error: e => console.log(e),
@@ -77,7 +77,7 @@ export class InventoryComponent {
                 }
             );
         } else {
-            this.httpClient.put(environment.apiUrl, this.inventoryData, httpOptions).subscribe(
+            this.httpClient.put(`${environment.apiUrl}/Inventory`, this.inventoryData, httpOptions).subscribe(
                 {
                     next: v => console.log(v),
                     error: e => console.log(e),

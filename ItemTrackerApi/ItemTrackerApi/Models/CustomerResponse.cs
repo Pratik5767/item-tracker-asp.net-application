@@ -1,10 +1,10 @@
 ﻿namespace ItemTrackerApi.Models
 {
-    public class CustomerRequestDto
+    public class CustomerResponse
     {
         #region Properties
 
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         public string FirstName { get; set; }
 

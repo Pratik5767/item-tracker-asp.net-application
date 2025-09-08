@@ -18,7 +18,7 @@ namespace ItemTrackerApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveInventoryData(Inventory InventoryDto)
+        public ActionResult SaveInventoryData(InventoryRequest InventoryReq)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
@@ -30,10 +30,10 @@ namespace ItemTrackerApi.Controllers
             };
 
             connection.Open();
-            command.Parameters.AddWithValue("@ProductId", InventoryDto.ProductId);
-            command.Parameters.AddWithValue("@ProductName", InventoryDto.ProductName);
-            command.Parameters.AddWithValue("@StockAvailable", InventoryDto.StockAvailable);
-            command.Parameters.AddWithValue("@ReorderStock", InventoryDto.ReorderStock);
+            command.Parameters.AddWithValue("@ProductId", InventoryReq.ProductId);
+            command.Parameters.AddWithValue("@ProductName", InventoryReq.ProductName);
+            command.Parameters.AddWithValue("@StockAvailable", InventoryReq.StockAvailable);
+            command.Parameters.AddWithValue("@ReorderStock", InventoryReq.ReorderStock);
             command.ExecuteNonQuery();
             connection.Close();
 
@@ -53,13 +53,13 @@ namespace ItemTrackerApi.Controllers
             };
 
             connection.Open();
-            List<InventoryDto> inventoryList = new List<InventoryDto>();
+            List<InventoryResponse> inventoryList = new List<InventoryResponse>();
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    InventoryDto inventoryDto = new InventoryDto();
+                    InventoryResponse inventoryDto = new InventoryResponse();
                     inventoryDto.ProductId = Convert.ToInt32(reader["ProductId"]);
                     inventoryDto.ProductName = reader["ProductName"].ToString();
                     inventoryDto.StockAvailable = Convert.ToInt32(reader["StockAvailable"]);
@@ -91,7 +91,7 @@ namespace ItemTrackerApi.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdateInventoryData(Inventory InventoryDto)
+        public ActionResult UpdateInventoryData(InventoryRequest InventoryDto)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
 
