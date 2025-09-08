@@ -43,7 +43,6 @@ export class InventoryComponent {
         const isDelete = confirm('Do you want to delete?');
         if (isDelete) {
             this.httpClient.delete(`${environment.apiUrl}?ProductId=${productId}`).subscribe(data => {
-                console.log(data);
                 this.inventoryDetails();
             })
         }
